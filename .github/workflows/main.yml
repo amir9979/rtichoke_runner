@@ -16,19 +16,25 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout rtichoke
+        uses: actions/checkout@v3
+        with:
+          repository: uriahf/rtichoke
+          path: .
+          fetch-depth: 0
+
       - uses: actions/checkout@v3
+        with:
+            repository: amir9979/rtichoke_runner
+            path: ./data
+            fetch-depth: 0
+
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
 
-      - name: Checkout rtichoke
-        uses: actions/checkout@v3
-        with:
-          repository: uriahf/rtichoke
-          path: ./rtichoke
-          fetch-depth: 0
 
       - name: install r 
         uses: r-lib/actions/setup-r@master
