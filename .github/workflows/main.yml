@@ -43,12 +43,20 @@ jobs:
 
 #       - uses: r-lib/actions/check-r-package@v2
 
-      # Set-up R
-      - name: Install packages
+
+#       # Set-up R
+#       - name: Install packages
+#         run: |
+#           R -e 'install.packages("devtools")'
+#           R -r 'devtools::install_github("uriahf/rtichoke")'
+
+      - name: Install dependencies
         run: |
-          R -e 'install.packages("devtools")'
-          R -r 'devtools::install_github("uriahf/rtichoke")'
-          
+          install.packages(c("remotes", "rcmdcheck", "devtools"))
+          remotes::install_github("uriahf/rtichoke")
+        shell: Rscript {0}
+
+
       - uses: r-lib/actions/check-r-package@v2
         with:
             args: 'c("--no-manual", "--as-cran")'
