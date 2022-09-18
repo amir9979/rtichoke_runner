@@ -26,11 +26,11 @@ jobs:
 #           path: .
 #           fetch-depth: 0
 
-#       - uses: actions/checkout@v3
-#         with:
-#             repository: amir9979/rtichoke_runner
-#             path: .
-#             fetch-depth: 0
+      - uses: actions/checkout@v3
+        with:
+            repository: amir9979/rtichoke_runner
+            path: .
+            fetch-depth: 0
 
 
       - name: install r 
