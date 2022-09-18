@@ -16,17 +16,17 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout rtichoke
-        uses: actions/checkout@v3
-        with:
-          repository: uriahf/rtichoke
-          path: .
-          fetch-depth: 0
+#       - name: Checkout rtichoke
+#         uses: actions/checkout@v3
+#         with:
+#           repository: uriahf/rtichoke
+#           path: .
+#           fetch-depth: 0
 
       - uses: actions/checkout@v3
         with:
             repository: amir9979/rtichoke_runner
-            path: ./data
+            path: .
             fetch-depth: 0
 
 
@@ -57,9 +57,9 @@ jobs:
           
     
 
-      # Run R script
-    #  - name: Scrape
-     #   run: Rscript sitemap_scraping.R
+#       Run R script
+      - name: Scrape
+        run: Rscript rtichoke_basic.R
 
 
       - name: ls
