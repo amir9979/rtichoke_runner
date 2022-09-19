@@ -55,7 +55,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages(c("remotes", "rcmdcheck", "devtools"))
+          install.packages(c("remotes", "rcmdcheck", "devtools", "tidyverse"))
           remotes::install_github("uriahf/rtichoke")
         shell: Rscript {0}
 
