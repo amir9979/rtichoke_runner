@@ -4,5 +4,7 @@ print(typeof(predictions))
 print(str(predictions))
 print(head(predictions$True_probability))
 print(head(predictions$actual))
+predictions$actual %>% map(function(x) ifelse(x=='False',0,1))
+print(head(predictions$actual))
 create_summary_report(probs = list(predictions$True_probability), 
                       reals= list(predictions$actual))
