@@ -8,6 +8,6 @@ print(head(predictions$actual))
 actual <- list(map(predictions$actual, function(x) ifelse(x=='False',0,1)))
 print(typeof(actual))
 print(str(actual))
-print(head(actual))
+print(sum(actual[1]))
 create_summary_report(probs = list(predictions$True_probability), 
                       reals= actual)
