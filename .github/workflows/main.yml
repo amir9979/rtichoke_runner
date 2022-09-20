@@ -63,6 +63,8 @@ jobs:
 
       - name: add to pages
         run: |
+              git config --global user.email "Amir9979@gmail.com"
+              git config --global user.name "Amir9979"
               git add .
               git commit -m "add report"
               git push 
