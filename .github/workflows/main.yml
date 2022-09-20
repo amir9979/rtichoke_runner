@@ -80,7 +80,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           # Artifact name
-          name: data
+          name: summary_report
           # A file, directory or wildcard pattern that describes what to upload
-          path: .
+          path: summary_report.html
 
