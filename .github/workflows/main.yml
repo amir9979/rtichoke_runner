@@ -12,12 +12,47 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: windows-latest
+    
+    strategy:
+        fail-fast: false
+        matrix:
+          ind: [0, 1, 2]
     env:
       GITHUB_PAT: ${{ secrets.PAT }}
 
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+
+      - uses: actions/checkout@v3
+        with:
+            repository: amir9979/rtichoke_runner
+            path: ./runner
+            fetch-depth: 0
+
+      - name: create predictions
+        run: |
+             mkdir results
+             copy ./classes/predictions_dummy.csv > ./results/ ${{matrix.ind}}.csv
+        working-directory: ./runner
+
+
+      - name: Upload all
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2
+        with:
+          # Artifact name
+          name: results
+          path: ./runner/results
+
+  aggregate:
+      runs-on: windows-latest
+      needs: build
+      env:
+        GITHUB_PAT: ${{ secrets.PAT }}
+
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
+      steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 
       - uses: actions/checkout@v3
@@ -33,6 +68,10 @@ jobs:
             fetch-depth: 0
             ref: gh-pages
 
+      - uses: actions/download-artifact@v3
+        with:
+          name: results
+          path: ./runner/results
 
       - name: install r 
         uses: r-lib/actions/setup-r@master
@@ -69,13 +108,3 @@ jobs:
               git commit -m "add report"
               git push 
         working-directory: ./pages
-
-      - name: Upload all
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v2
-        with:
-          # Artifact name
-          name: summary_report
-          # A file, directory or wildcard pattern that describes what to upload
-          path: ./pages/summary_report.html
-
