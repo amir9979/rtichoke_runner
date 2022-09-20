@@ -74,6 +74,12 @@ jobs:
 
       - name: ls
         run: ls -R
+      
+      - name: gh login
+        run: echo "${{ secrets.PAT }}" | gh auth login --with-token
+
+      - name: add as gist
+        run: gh gist create --public summary_report.html
 
       - name: Upload all
         if: ${{ always() }}
