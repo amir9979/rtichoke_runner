@@ -31,8 +31,8 @@ jobs:
 
       - name: create predictions
         run: |
-             mkdir results
-             copy ./classes/predictions_dummy.csv > ./results/ ${{matrix.ind}}.csv
+             mkdir ./results
+             copy ./classes/predictions_dummy.csv > ./results/${{matrix.ind}}.csv
         working-directory: ./runner
 
 
