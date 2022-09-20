@@ -2,4 +2,4 @@ library(tidyverse)
 library(rtichoke)
 predictions <- read.csv(file = 'classes/prediction_dummy.csv', sep=';')
 create_summary_report(probs = list(predictions$True_probability), 
-                      reals= list(predictions$actual))
+                      reals= list(predictions$actual), output_file= 'summary_report.html', output_dir  = '../pages')
