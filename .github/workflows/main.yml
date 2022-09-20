@@ -19,17 +19,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#       - name: Checkout rtichoke
-#         uses: actions/checkout@v3
-#         with:
-#           repository: uriahf/rtichoke
-#           path: .
-#           fetch-depth: 0
 
       - uses: actions/checkout@v3
         with:
             repository: amir9979/rtichoke_runner
-            path: .
+            path: ./runner
             fetch-depth: 0
 
 
@@ -40,19 +34,6 @@ jobs:
 
       - uses: r-lib/actions/setup-r@v2
 
-#       - uses: r-lib/actions/setup-r-dependencies@v2
-#         with:
-#           extra-packages: rcmdcheck
-
-#       - uses: r-lib/actions/check-r-package@v2
-
-
-#       # Set-up R
-#       - name: Install packages
-#         run: |
-#           R -e 'install.packages("devtools")'
-#           R -r 'devtools::install_github("uriahf/rtichoke")'
-
       - name: Install dependencies
         run: |
           install.packages(c("remotes", "rcmdcheck", "devtools", "tidyverse"))
@@ -60,33 +41,25 @@ jobs:
         shell: Rscript {0}
 
 
-#       - uses: r-lib/actions/check-r-package@v2
-#         with:
-#             args: 'c("--no-manual", "--as-cran")'
-#             error-on: '"error"'
-#             check-dir: '"check"'
-  
-
-#       Run R script
       - name: Scrape
         run: Rscript rtichoke_basic.R
-
+        working-directory: ./runner
 
       - name: ls
         run: ls -R
       
-      - name: gh login
-        run: echo "${{ secrets.PAT }}" | gh auth login --with-token
+#       - name: gh login
+#         run: echo "${{ secrets.PAT }}" | gh auth login --with-token
 
-      - name: add as gist
-        run: gh gist create --public summary_report.html
+#       - name: add as gist
+#         run: gh gist create --public summary_report.html
 
       - name: Upload all
         if: ${{ always() }}
         uses: actions/upload-artifact@v2
         with:
           # Artifact name
-          name: summary_report
+          name: ./runner/summary_report
           # A file, directory or wildcard pattern that describes what to upload
           path: summary_report.html
 
