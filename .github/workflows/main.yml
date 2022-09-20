@@ -59,7 +59,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           # Artifact name
-          name: ./runner/summary_report
+          name: /summary_report
           # A file, directory or wildcard pattern that describes what to upload
-          path: summary_report.html
+          path: ./runner/summary_report.html
 
