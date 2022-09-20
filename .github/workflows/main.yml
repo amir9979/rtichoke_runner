@@ -64,6 +64,7 @@ jobs:
       - name: add to pages
         run: |
               git add .
+              git commit -m "add report"
               git push 
         working-directory: ./pages
 
