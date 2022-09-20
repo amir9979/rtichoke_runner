@@ -26,6 +26,12 @@ jobs:
             path: ./runner
             fetch-depth: 0
 
+      - uses: actions/checkout@v3
+        with:
+            repository: amir9979/rtichoke_runner
+            path: ./pages
+            fetch-depth: 0
+
 
       - name: install r 
         uses: r-lib/actions/setup-r@master
@@ -53,6 +59,12 @@ jobs:
 
 #       - name: add as gist
 #         run: gh gist create --public summary_report.html
+
+      - name: add to pages
+        run: |
+              git add .
+              git push 
+        working-directory: ./pages
 
       - name: Upload all
         if: ${{ always() }}
