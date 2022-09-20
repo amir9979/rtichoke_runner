@@ -1,4 +1,4 @@
-name;actual;prediction;0_probability;1_probability
+name;actual;prediction;False_probability;True_probability
 d:\a\repo_mining_runner\repo_mining_runner\apache_repos\commons-lang\src\main\java\org\apache\commons\lang3\annotationutils.java;0;0;0.99525;0.00475
 d:\a\repo_mining_runner\repo_mining_runner\apache_repos\commons-lang\src\main\java\org\apache\commons\lang3\archutils.java;0;0;0.996;0.004
 d:\a\repo_mining_runner\repo_mining_runner\apache_repos\commons-lang\src\main\java\org\apache\commons\lang3\arrayutils.java;0;0;0.9505833333333332;0.049416666666666664
